@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drop2Print — Photo & PDF Printing</title>
+<meta name="description" content="Print photos, create smart collages, and arrange images locally in your browser with Drop2Print.">
+<style>
+:root{--pink:#f01868;--pink-dark:#d01055;--ink:#172033;--muted:#667085;--line:#e3e7ef;--bg:#f5f7fb;--blue:#1e40af;--green:#087443}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}.topbar{height:64px;position:sticky;top:0;z-index:20;background:#ffffffed;backdrop-filter:blur(12px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 max(18px,calc((100vw - 1140px)/2));gap:16px}.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:18px;letter-spacing:-.5px}.brandmark{width:34px;height:34px;border-radius:11px;background:var(--pink);display:grid;place-items:center;color:white;font-size:20px;box-shadow:0 5px 14px #f0186833}.top-actions{display:flex;gap:8px}.btn{border:1px solid var(--line);background:white;color:var(--ink);padding:10px 14px;border-radius:11px;font-weight:750;font-size:13px;transition:.15s}.btn:hover{transform:translateY(-1px);border-color:#b8c1d1}.btn.primary{background:var(--pink);border-color:var(--pink);color:white;box-shadow:0 6px 18px #f0186828}.btn.primary:hover{background:var(--pink-dark)}.btn.blue{background:#eaf0ff;color:var(--blue);border-color:#bfdbfe}.hero{position:relative;overflow:hidden;padding:36px 18px 44px;text-align:center;background:linear-gradient(#fff,#fff7fa 48%,#f5f7fb);border-bottom:1px solid var(--line)}.hero:before,.hero:after{content:"";position:absolute;width:300px;height:300px;border-radius:50%;filter:blur(65px);pointer-events:none}.hero:before{background:#f0186814;right:8%;top:-90px}.hero:after{background:#1e40af0d;left:12%;top:90px}.hero-inner{position:relative;z-index:1;max-width:1040px;margin:auto}.pills{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:16px}.pill{font-size:11px;font-weight:800;border-radius:99px;padding:7px 11px;border:1px solid #fbcfe8;background:#fff0f5;color:var(--pink)}.pill.green{border-color:#a7f3d0;background:#ecfdf5;color:var(--green)}h1{font-size:clamp(30px,5vw,51px);line-height:1.12;letter-spacing:-1.7px;margin:0 auto 14px;max-width:850px;font-weight:950}h1 span{background:linear-gradient(90deg,#f01868,#e11d48,#990a42);color:transparent;background-clip:text}.hero p{font-size:15px;line-height:1.7;color:var(--muted);max-width:760px;margin:0 auto}.hero-buttons{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:25px}.hero-buttons .btn{padding:13px 17px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:900px;margin:32px auto 0;padding-top:22px;border-top:1px solid var(--line)}.stat{background:#ffffffc9;border:1px solid var(--line);border-radius:13px;padding:14px 8px}.stat strong{display:block;font-size:15px}.stat span{display:block;font-size:11px;color:var(--muted);margin-top:4px}.jump{margin-top:20px;background:none;border:0;color:var(--muted);font-weight:700;font-size:12px}.wrap{max-width:1140px;margin:auto;padding:22px 16px}.studio-head{display:flex;align-items:center;justify-content:space-between;gap:16px;background:white;border:1px solid var(--line);border-radius:16px;padding:13px 15px;margin-bottom:14px;flex-wrap:wrap}.studio-title{display:flex;align-items:center;gap:11px}.studio-icon{width:36px;height:36px;display:grid;place-items:center;border-radius:11px;background:#fff0f5;color:var(--pink);font-size:19px}.studio-title strong{display:block;font-size:13px}.studio-title small{display:block;color:var(--muted);font-size:11px;margin-top:3px}.mode-switch{display:flex;gap:3px;background:var(--bg);border:1px solid var(--line);padding:4px;border-radius:11px}.mode-switch button{border:0;background:transparent;border-radius:8px;padding:8px 10px;font-size:11px;font-weight:800;color:var(--muted)}.mode-switch button.active{background:white;color:var(--ink);box-shadow:0 1px 4px #17203312}.studio-card{background:white;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 8px 28px #17203308}.studio-toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:15px 17px;border-bottom:1px solid var(--line);flex-wrap:wrap}.section-label{font-size:14px;font-weight:900}.muted{color:var(--muted)}.tiny{font-size:11px}.toolbar-actions{display:flex;gap:7px;flex-wrap:wrap}.studio-body{padding:17px}.dropzone{border:1.5px dashed #c8d0df;background:#fafbfe;border-radius:15px;padding:28px 14px;text-align:center;transition:.2s}.dropzone.drag{border-color:var(--pink);background:#fff0f5}.upload-icon{font-size:31px;margin-bottom:8px}.dropzone h3{margin:0 0 6px;font-size:16px}.dropzone p{margin:0 0 15px;color:var(--muted);font-size:12px}.upload-actions{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}.file-input{display:none}.settings{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:15px 0}.setting{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}.setting label,.setting .label{font-size:11px;font-weight:850;display:block;margin-bottom:7px}.setting select{width:100%;padding:9px;border:1px solid #d7deea;border-radius:8px;background:white;font-size:12px;color:var(--ink)}.checkrow{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:800}.checkrow input{accent-color:var(--pink);width:16px;height:16px}.collage-settings{display:none;border:1px solid #fbcfe8;background:#fff8fb;border-radius:13px;padding:13px;margin:0 0 15px}.collage-settings.show{display:block}.collage-head{font-weight:900;font-size:12px;margin-bottom:10px;color:#a10d49}.collage-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.image-options{border:1px solid var(--line);border-radius:13px;padding:13px;margin:14px 0}.image-options-head{font-size:12px;font-weight:900;margin-bottom:10px}.option-actions{display:flex;gap:7px;flex-wrap:wrap}.images-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:18px 0 10px}.image-count{font-size:12px;font-weight:800}.images-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:11px}.empty-state{border:1px solid var(--line);border-radius:12px;padding:24px;text-align:center;color:var(--muted);font-size:12px;background:#fafbfe}.image-card{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:white;min-width:0}.image-card.selected{border-color:#f472a1;box-shadow:0 0 0 2px #f0186810}.thumb-wrap{height:140px;background:#f0f2f7;display:grid;place-items:center;overflow:hidden;position:relative}.thumb-wrap img{width:100%;height:100%;object-fit:contain}.thumb-check{position:absolute;top:8px;left:8px;background:white;border-radius:6px;padding:4px;box-shadow:0 1px 5px #0002}.thumb-check input{accent-color:var(--pink)}.image-info{padding:9px}.filename{font-size:11px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.filesize{font-size:10px;color:var(--muted);margin-top:3px}.image-controls{display:flex;gap:5px;margin-top:8px}.image-controls button{flex:1;padding:6px 4px;border:1px solid var(--line);border-radius:7px;background:#fff;font-size:10px;font-weight:800}.image-controls button:hover{background:var(--bg)}.collage-check{display:none;margin-top:7px;font-size:10px;font-weight:750;color:#a10d49;align-items:center;gap:5px}.collage-check.show{display:flex}.collage-check input{accent-color:var(--pink)}.bottom-actions{display:flex;gap:8px;flex-wrap:wrap;padding:14px 17px;border-top:1px solid var(--line);background:#fafbfe}.bottom-actions .btn{flex:1;min-width:130px}.notice{font-size:11px;color:var(--muted);margin-top:12px;line-height:1.5}.section{padding:48px 18px;background:white;border-bottom:1px solid var(--line)}.section.alt{background:#f8fafc}.section-inner{max-width:1140px;margin:auto}.section-heading{text-align:center;max-width:700px;margin:0 auto 28px}.eyebrow{display:inline-block;background:#f5f7fb;border:1px solid var(--line);border-radius:99px;padding:6px 10px;font-size:10px;letter-spacing:.08em;font-weight:900;color:var(--muted);text-transform:uppercase}.section-heading h2{font-size:clamp(23px,3vw,32px);letter-spacing:-.8px;margin:12px 0 8px}.section-heading p{font-size:13px;color:var(--muted);line-height:1.6}.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.feature{background:white;border:1px solid var(--line);border-radius:15px;padding:19px}.feature-icon{width:37px;height:37px;display:grid;place-items:center;background:#fff0f5;color:var(--pink);border-radius:11px;font-size:18px}.feature h3{font-size:14px;margin:13px 0 7px}.feature p{font-size:12px;color:var(--muted);line-height:1.65;margin:0}.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.step{background:white;border:1px solid var(--line);border-radius:15px;padding:18px}.stepnum{width:29px;height:29px;border-radius:9px;background:#fff0f5;color:var(--pink);display:grid;place-items:center;font-weight:900;font-size:12px}.step h3{font-size:13px;margin:13px 0 7px}.step p{font-size:11px;line-height:1.6;color:var(--muted)}.faq{max-width:800px;margin:auto}.faq-item{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:9px}.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;text-align:left;gap:12px;border:0;background:#fafbfc;padding:15px;font-weight:850;font-size:12px;color:var(--ink)}.faq-a{display:none;border-top:1px solid var(--line);padding:14px;font-size:12px;color:var(--muted);line-height:1.7}.faq-item.open .faq-a{display:block}.faq-item.open .faq-q span:last-child{transform:rotate(180deg);color:var(--pink)}footer{text-align:center;padding:25px 16px;font-size:11px;color:var(--muted)}.modal-backdrop{display:none;position:fixed;inset:0;background:#10182899;z-index:50;align-items:center;justify-content:center;padding:18px}.modal-backdrop.show{display:flex}.modal{background:white;border-radius:16px;max-width:900px;width:100%;max-height:90vh;overflow:auto;box-shadow:0 20px 70px #0003}.modal-head{display:flex;justify-content:space-between;align-items:center;padding:15px 18px;border-bottom:1px solid var(--line);position:sticky;top:0;background:white}.modal-head strong{font-size:14px}.modal-content{padding:18px}.modal-close{border:1px solid var(--line);background:white;border-radius:8px;padding:5px 9px}.preview-intro{text-align:center;color:var(--muted);font-size:12px;line-height:1.55;margin:0 0 16px}.preview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:15px}.preview-page{border:1px solid var(--line);background:#eef0f5;padding:12px;border-radius:10px}.preview-page img{width:100%;display:block;background:white;box-shadow:0 2px 8px #0001}.preview-page p{font-size:11px;color:var(--muted);margin:8px 0 0}.toast{position:fixed;bottom:18px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;z-index:80;background:#172033;color:white;padding:11px 15px;border-radius:10px;font-size:12px;font-weight:750;transition:.2s;box-shadow:0 8px 25px #0002}.toast.show{opacity:1;transform:translate(-50%,0)}.side-mode .hero,.side-mode #features,.side-mode #install,.side-mode #faq{display:none}.side-mode .wrap{max-width:480px;padding:10px}.side-mode .studio-head{align-items:flex-start}.side-mode .settings{grid-template-columns:1fr}.side-mode .collage-grid{grid-template-columns:1fr}.side-mode .images-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.popup-mode .hero,.popup-mode #features,.popup-mode #install,.popup-mode #faq{display:none}.popup-mode .wrap{max-width:440px;padding:8px}.popup-mode .studio-head{display:none}.popup-mode .settings{grid-template-columns:1fr}.popup-mode .collage-grid{grid-template-columns:1fr}.popup-mode .images-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.popup-mode .studio-toolbar{padding:11px}.popup-mode .studio-body{padding:11px}
+@media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}.settings,.collage-grid{grid-template-columns:1fr}.feature-grid{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.topbar{height:58px}.top-actions .btn{padding:8px 9px;font-size:11px}.hero{padding-top:27px}.studio-toolbar{align-items:flex-start}.mode-switch{width:100%}.mode-switch button{flex:1}.wrap{padding:12px 9px}}@media(max-width:440px){.feature-grid,.steps{grid-template-columns:1fr}.brand{font-size:16px}.hero p{font-size:13px}.hero-buttons .btn{width:100%;justify-content:center}.image-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media print{body{background:white}.topbar,.hero,.studio-head,.studio-card,.section,footer,.modal-backdrop,.toast{display:none!important}}
+
+.extension-banner{background:linear-gradient(110deg,#f01868,#a9004a);color:#fff;padding:12px max(18px,calc((100vw - 1140px)/2));text-align:left}
+.banner-left{display:flex;align-items:center;gap:14px;font-size:13px;line-height:1.35}
+.banner-badge{display:inline-block;background:#ffffff2b;border:1px solid #ffffff24;border-radius:5px;padding:6px 10px;font-size:11px;line-height:1.3;letter-spacing:.03em;min-width:112px}
+.banner-install{border:0;background:transparent;color:white;padding:10px 0 0;font-size:12px;text-align:left}
+.product-head{max-width:1140px;margin:auto;padding:18px 18px 20px;background:#fff;text-align:left}
+.product-brand-row{display:flex;align-items:center;gap:13px}
+.product-logo{width:56px;height:56px;flex:0 0 56px;border-radius:14px;background:var(--pink);display:grid;place-items:center;box-shadow:0 5px 12px #f0186825}
+.product-logo svg{width:32px;height:32px;fill:white}
+.product-brand-text{min-width:0}.product-title{font-size:27px;line-height:1.2;font-weight:850;letter-spacing:-1px}.product-title span{font-size:11px;letter-spacing:0;vertical-align:middle;margin-left:5px;background:#eaf0ff;color:#1e40af;padding:5px 8px;border-radius:5px;font-weight:800}
+.product-brand-text p{font-size:12px;line-height:1.45;color:var(--muted);margin:3px 0 0;max-width:580px}
+.product-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:17px}.product-actions .btn{font-size:13px;padding:13px 16px}.product-actions .btn.primary{flex:1}
+.hero{padding:0;text-align:left;background:#f5f7fb;border-bottom:1px solid var(--line)}
+.hero-inner{max-width:1140px;margin:auto;padding:0 18px 24px}
+.hero:before,.hero:after{display:none}
+.stats{margin:20px auto 0;padding-top:20px}
+.studio-head{margin-top:0}
+.studio-card{border-radius:19px}
+.studio-toolbar{padding:17px 18px}
+.studio-title strong{font-size:17px}
+.studio-title small{font-size:12px}
+.dropzone{padding:30px 14px;border:1.5px dashed #b9c5d8;background:#fafbfe}
+.dropzone .upload-icon{width:62px;height:62px;border-radius:50%;background:#fbe5ef;color:var(--pink);display:grid;place-items:center;margin:0 auto 12px;font-size:30px}
+.dropzone h3{font-size:16px}
+.dropzone p{font-size:12px}
+.setting{padding:14px;background:#fafbfc;border-radius:14px}
+.setting label,.setting .label{font-size:12px}
+.setting select,.collage-settings select{min-height:43px;font-size:13px;border-radius:10px;padding:10px 12px}
+.collage-settings{padding:15px;border-radius:15px}
+.collage-head{font-size:14px}
+.option-actions .btn{font-size:12px}
+.image-options-head{font-size:14px}
+.bottom-actions .btn{padding:14px 12px;font-size:13px}
+.preview-controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:16px}
+.preview-fit-control{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 11px;border:1px solid var(--line);border-radius:10px;background:#fafbfc;font-size:11px}
+.preview-fit-control span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:58%}
+.preview-fit-control select{max-width:48%;padding:7px;border:1px solid #d7deea;border-radius:8px;background:white;font-size:11px}
+@media(max-width:600px){.extension-banner{padding:10px 18px}.banner-left{font-size:12px;gap:10px}.banner-badge{min-width:104px}.product-head{padding:17px 18px}.product-logo{width:54px;height:54px;flex-basis:54px}.product-title{font-size:25px}.product-brand-text p{font-size:12px}.product-actions .btn{flex:1;min-width:140px}.hero-inner{padding:0 14px 20px}.stats{gap:10px}.stat{padding:15px 8px}.stat strong{font-size:16px}.stat span{font-size:11px}.studio-head{margin-bottom:12px}.studio-title strong{font-size:15px}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="brandmark">▣</span><span>Drop2Print</span></div>
+  <div class="top-actions"><button class="btn" id="headerInstall">How to Install</button><button class="btn primary" id="headerTry">Open Print Studio ↘</button></div>
+</header>
+<section class="hero">
+  <div class="extension-banner">
+    <div class="banner-left"><span class="banner-badge">CHROME<br>EXTENSION<br>READY</span><span>Manifest V3 Extension with Side Panel<br>&amp; One-Click Tab Grabber</span></div>
+    <button class="banner-install" id="bannerInstall">ⓘ <u>Install in Chrome</u></button>
+  </div>
+  <div class="product-head">
+    <div class="product-brand-row">
+      <div class="product-logo" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 2h10v5H7zM4 7h16a2 2 0 0 1 2 2v8h-4v5H6v-5H2V9a2 2 0 0 1 2-2zm4 10v3h8v-3zm10-5a1.2 1.2 0 1 0 0 .1z"/></svg></div>
+      <div class="product-brand-text"><div class="product-title">Drop2Print <span>V1.2 MV3</span></div><p>Chrome Extension &amp; Web Companion for Images &amp; PDF Printing</p></div>
+    </div>
+    <div class="product-actions"><button class="btn blue" id="simulateGrabber">▧ Grab Images</button><button class="btn primary" id="downloadExtension">↓ Download Extension (.zip)</button></div>
+  </div>
+  <div class="hero-inner">
+    <div class="stats"><div class="stat"><strong>1, 2, 4, 6, 8</strong><span>Partitions per Page</span></div><div class="stat"><strong style="color:var(--pink)">A4, Letter, Legal, A5</strong><span>Standard Paper Sizes</span></div><div class="stat"><strong style="color:var(--green)">100% Local</strong><span>Client-Side Engine</span></div><div class="stat"><strong style="color:var(--blue)">Side Panel + Popup</strong><span>Dual Extension Modes</span></div></div>
+    <button class="jump" id="jumpStudio">Try the Interactive Studio below ↓</button>
+  </div>
+</section>
+<main class="wrap" id="studio">
+  <div class="studio-head"><div class="studio-title"><div class="studio-icon">▣</div><div><strong>Interactive Print Studio &amp; Extension Simulator</strong><small>Test the UI in Fullscreen, Side Panel, or Popup mode</small></div></div><div class="mode-switch"><button class="active" data-mode="fullscreen">▣ Full Web Studio</button><button data-mode="side">☷ Side Panel</button><button data-mode="popup">▣ Popup</button></div></div>
+  <div class="studio-card">
+    <div class="studio-toolbar"><div><div class="section-label">Image Print Studio</div><div class="tiny muted" id="summary">Add images to start · Files stay on your device</div></div><div class="toolbar-actions"><button class="btn" id="addMore">＋ Add Images</button><button class="btn" id="clearAll">Clear All</button></div></div>
+    <div class="studio-body">
+      <div class="dropzone" id="dropzone"><div class="upload-icon">▧</div><h3>Drop images here to get started</h3><p>Or select files from your device. You can also paste an image with Ctrl/⌘ + V.</p><div class="upload-actions"><button class="btn primary" id="chooseImages">＋ Choose Images</button><button class="btn" id="chooseFolder">▤ Add Folder</button><button class="btn" id="pasteHelp">Paste Tips</button></div></div>
+      <input class="file-input" type="file" id="imageInput" accept="image/*" multiple><input class="file-input" type="file" id="folderInput" accept="image/*" webkitdirectory multiple>
+      <div class="settings">
+        <div class="setting"><label for="paperSize">Paper Size</label><select id="paperSize"><option value="A4">A4 (210 × 297 mm)</option><option value="Letter">Letter (8.5 × 11 in)</option><option value="Legal">Legal (8.5 × 14 in)</option><option value="A5">A5 (148 × 210 mm)</option></select></div>
+        <div class="setting"><span class="label">Image Handling</span><label class="checkrow"><input type="checkbox" id="enableCollage"> Enable collage layout</label><div class="tiny muted" style="margin-top:6px">Only selected collage images share a page.</div></div>
+        <div class="setting"><label for="defaultFit">Default image fit</label><select id="defaultFit"><option value="contain">Shrink to fit (no crop)</option><option value="cover">Fill grid (crop)</option></select></div>
+      </div>
+      <div class="collage-settings" id="collageSettings">
+        <div class="collage-head">▦ Collage Options</div>
+        <div class="collage-grid">
+          <div><label class="tiny" for="collageCount" style="font-weight:800;display:block;margin-bottom:6px">Images per page</label><select id="collageCount"><option value="auto">Auto (up to 4)</option><option value="1">1 per page</option><option value="2">2 per page</option><option value="3">3 per page</option><option value="4">4 per page</option><option value="6">6 per page</option><option value="8">8 per page</option></select></div>
+          <div><label class="tiny" for="collageFit" style="font-weight:800;display:block;margin-bottom:6px">Collage image fit</label><select id="collageFit"><option value="contain">Shrink to fit</option><option value="cover">Fill grid</option></select></div>
+          <div><label class="tiny" style="font-weight:800;display:block;margin-bottom:6px">Quick selection</label><div class="option-actions"><button class="btn" id="selectCollage">Select all</button><button class="btn" id="deselectCollage">Deselect all</button></div></div>
+        </div>
+      </div>
+      <div class="image-options"><div class="image-options-head">Image Options</div><div class="option-actions"><button class="btn" id="selectAll">Select all images</button><button class="btn" id="deselectAll">Deselect all</button><button class="btn" id="rotateAll">↻ Rotate selected</button></div></div>
+      <div class="images-head"><div class="image-count" id="imageCount">Images (0)</div><div class="tiny muted" id="selectedCount">0 selected</div></div>
+      <div class="images-grid" id="imagesGrid"><div class="empty-state">Your images will appear here. Add a few photos to get started.</div></div>
+      <div class="notice">Privacy note: image processing happens locally in this browser tab. Printing opens your device's print dialog, where you can choose a printer or save as PDF.</div>
+    </div>
+    <div class="bottom-actions"><button class="btn" id="previewBtn">▧ Preview pages</button><button class="btn primary" id="printBtn">▣ Print selected images</button><button class="btn" id="downloadBtn">↓ Download preview images</button></div>
+  </div>
+</main>
+<section class="section" id="features"><div class="section-inner"><div class="section-heading"><span class="eyebrow">Features</span><h2>Printing tools without the busywork</h2><p>Simple image preparation, useful layout controls, and local processing in one browser-based workspace.</p></div><div class="feature-grid">
+<div class="feature"><div class="feature-icon">▦</div><h3>Smart Collage Layouts</h3><p>Arrange multiple photos on one sheet. Choose the number of partitions and whether each photo fits fully or fills its cell.</p></div>
+<div class="feature"><div class="feature-icon">↻</div><h3>Quick Image Controls</h3><p>Select individual images, rotate them, remove unwanted files, and choose which photos belong in a collage.</p></div>
+<div class="feature"><div class="feature-icon">▣</div><h3>Multiple Paper Sizes</h3><p>Prepare pages for A4, Letter, Legal, or A5 paper and use your browser's print settings for final output.</p></div>
+<div class="feature"><div class="feature-icon">⌁</div><h3>Drag, Drop &amp; Paste</h3><p>Add images by browsing files, dropping them into the workspace, choosing a folder, or pasting copied images.</p></div>
+<div class="feature"><div class="feature-icon">♧</div><h3>Local Processing</h3><p>Image previews and page layouts are generated on-device. This standalone page does not upload your photos.</p></div>
+<div class="feature"><div class="feature-icon">▤</div><h3>Extension Layout Simulator</h3><p>Preview a compact Side Panel or Popup-style workspace. This is a visual simulator, not an installed browser extension.</p></div>
+</div></div></section>
+<section class="section alt" id="install"><div class="section-inner"><div class="section-heading"><span class="eyebrow" style="color:var(--blue);background:#eaf0ff;border-color:#bfdbfe">Easy Setup</span><h2>How to Install the Extension in Chrome</h2><p>The page itself works as a website. To install an extension, you need a separately packaged extension folder.</p></div><div class="steps">
+<div class="step"><div class="stepnum">1</div><h3>Get the extension folder</h3><p>Download the actual Drop2Print extension package from its publisher and extract it to a folder.</p></div>
+<div class="step"><div class="stepnum">2</div><h3>Open extensions</h3><p>In desktop Chrome, open a new tab and visit <code>chrome://extensions</code>.</p><button class="btn" id="copyExtensions" style="margin-top:8px">Copy chrome://extensions</button></div>
+<div class="step"><div class="stepnum">3</div><h3>Enable Developer mode</h3><p>Turn on Developer mode from the extensions page. This option is available in desktop browsers.</p></div>
+<div class="step"><div class="stepnum">4</div><h3>Load unpacked</h3><p>Select the extracted extension folder using “Load unpacked”. The website file alone is not an extension package.</p></div>
+</div></div></section>
+<section class="section" id="faq"><div class="section-heading"><span class="eyebrow">FAQ</span><h2>Frequently Asked Questions</h2></div><div class="faq">
+<div class="faq-item open"><button class="faq-q"><span>Does this standalone HTML have all features from the React project?</span><span>⌄</span></button><div class="faq-a">This is a standalone vanilla HTML, CSS, and JavaScript recreation of the main website and image-print studio. It implements image upload, selection, rotation, collage layout, preview, and printing. Features whose supporting React modules were not provided, such as the original extension ZIP packager and full PDF page-range engine, are not included.</div></div>
+<div class="faq-item"><button class="faq-q"><span>Are my photos uploaded to a server?</span><span>⌄</span></button><div class="faq-a">No. This standalone file processes image files in your browser. It does not send your images to a server.</div></div>
+<div class="faq-item"><button class="faq-q"><span>Can I print multiple photos on one page?</span><span>⌄</span></button><div class="faq-a">Yes. Enable collage layout, choose how many images to place on each page, and tick the collage checkbox on the images you want included. Images not marked for collage print on separate pages.</div></div>
+<div class="faq-item"><button class="faq-q"><span>Can I choose a printer or save as PDF?</span><span>⌄</span></button><div class="faq-a">Use Print selected images to open the browser or device print dialog. From there, choose an available printer or a “Save as PDF” destination if your platform offers it.</div></div>
+<div class="faq-item"><button class="faq-q"><span>Does the simulated Side Panel install a real extension?</span><span>⌄</span></button><div class="faq-a">No. The Side Panel and Popup buttons only change the page layout to simulate the extension dimensions. Real browser integration requires a separate extension package.</div></div>
+</div></section>
+<footer>Drop2Print · Browser-based image printing · Your images stay on your device</footer>
+<div class="modal-backdrop" id="previewModal" role="dialog" aria-modal="true" aria-label="Print preview"><div class="modal"><div class="modal-head"><strong>Page Preview</strong><button class="modal-close" id="closePreview">✕ Close</button></div><div class="modal-content"><p class="preview-intro">Preview of your print layout. Use the dropdown for each image to choose <strong>Shrink to fit</strong> or <strong>Fill grid</strong>.</p><div class="preview-controls" id="previewControls"></div><div class="preview-grid" id="previewGrid"></div><div class="notice">The preview is generated locally. Use Print from the main studio to open your system print dialog.</div></div></div></div>
+<div class="modal-backdrop" id="grabberModal" role="dialog" aria-modal="true"><div class="modal" style="max-width:500px"><div class="modal-head"><strong>Simulate Tab Grabber</strong><button class="modal-close" data-close="grabberModal">✕</button></div><div class="modal-content"><p style="font-size:13px;line-height:1.6;color:var(--muted)">A real browser tab grabber requires a Chrome extension with the appropriate permissions. In this standalone website, choose local image files instead.</p><button class="btn primary" id="grabberChoose">Choose images from device</button></div></div></div>
+<div class="toast" id="toast"></div>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const state = { images: [], nextId: 1, mode: 'fullscreen' };
+  const paperInches = { A4:[8.27,11.69], Letter:[8.5,11], Legal:[8.5,14], A5:[5.83,8.27] };
+  let toastTimer;
+  function toast(message){const el=$('toast');el.textContent=message;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2600)}
+  function bytes(n){if(n<1024)return n+' B';if(n<1048576)return (n/1024).toFixed(1)+' KB';return (n/1048576).toFixed(1)+' MB'}
+  function selected(){return state.images.filter(x=>x.selected)}
+  function collaged(){return $('enableCollage').checked ? selected().filter(x=>x.collageSelected) : []}
+  function updateSummary(){ $('summary').textContent=`${state.images.length} image${state.images.length===1?'':'s'} added · Files stay on your device`; $('imageCount').textContent=`Images (${state.images.length})`; $('selectedCount').textContent=`${selected().length} selected`; $('printBtn').disabled=selected().length===0; $('previewBtn').disabled=selected().length===0; $('downloadBtn').disabled=selected().length===0; }
+  function render(){
+    const grid=$('imagesGrid');grid.innerHTML='';
+    if(!state.images.length){grid.innerHTML='<div class="empty-state">Your images will appear here. Add a few photos to get started.</div>';updateSummary();return}
+    for(const item of state.images){
+      const card=document.createElement('div');card.className='image-card'+(item.selected?' selected':'');
+      const wrap=document.createElement('div');wrap.className='thumb-wrap';
+      const img=document.createElement('img');img.src=item.url;img.alt=item.name;img.style.objectFit=item.fit;img.style.transform=`rotate(${item.rotation}deg)`;wrap.appendChild(img);
+      const checkWrap=document.createElement('label');checkWrap.className='thumb-check';const check=document.createElement('input');check.type='checkbox';check.checked=item.selected;check.setAttribute('aria-label','Select '+item.name);check.addEventListener('change',()=>{item.selected=check.checked;render()});checkWrap.appendChild(check);wrap.appendChild(checkWrap);
+      const info=document.createElement('div');info.className='image-info';
+      const name=document.createElement('div');name.className='filename';name.title=item.name;name.textContent=item.name;
+      const size=document.createElement('div');size.className='filesize';size.textContent=bytes(item.file.size);
+      const controls=document.createElement('div');controls.className='image-controls';
+      const rotate=document.createElement('button');rotate.textContent='↻ Rotate';rotate.title='Rotate image';rotate.onclick=()=>{item.rotation=(item.rotation+90)%360;render()};
+      const fit=document.createElement('button');fit.textContent=item.fit==='contain'?'Fit: Whole':'Fit: Fill';fit.title='Toggle image fit';fit.onclick=()=>{item.fit=item.fit==='contain'?'cover':'contain';render()};
+      const remove=document.createElement('button');remove.textContent='✕ Remove';remove.onclick=()=>{URL.revokeObjectURL(item.url);state.images=state.images.filter(x=>x.id!==item.id);render()};
+      controls.append(rotate,fit,remove);info.append(name,size,controls);
+      const collageLabel=document.createElement('label');collageLabel.className='collage-check'+($('enableCollage').checked?' show':'');const collageBox=document.createElement('input');collageBox.type='checkbox';collageBox.checked=item.collageSelected;collageBox.addEventListener('change',()=>{item.collageSelected=collageBox.checked;updateSummary()});collageLabel.append(collageBox,document.createTextNode(' Include in collage'));info.append(collageLabel);
+      card.append(wrap,info);grid.appendChild(card);
+    }
+    updateSummary();
+  }
+  function addFiles(files){
+    const valid=Array.from(files||[]).filter(f=>f.type.startsWith('image/'));
+    if(!valid.length){toast('Choose image files such as JPG, PNG, or WebP.');return}
+    valid.forEach(file=>state.images.push({id:state.nextId++,file,name:file.name,url:URL.createObjectURL(file),selected:true,collageSelected:true,rotation:0,fit:$('defaultFit').value}));
+    render();toast(`${valid.length} image${valid.length===1?'':'s'} added`);
+  }
+  $('chooseImages').onclick=()=>$('imageInput').click();$('addMore').onclick=()=>$('imageInput').click();$('chooseFolder').onclick=()=>$('folderInput').click();$('grabberChoose').onclick=()=>$('imageInput').click();
+  $('imageInput').addEventListener('change',e=>{addFiles(e.target.files);e.target.value=''});$('folderInput').addEventListener('change',e=>{addFiles(e.target.files);e.target.value=''});
+  $('dropzone').addEventListener('dragover',e=>{e.preventDefault();$('dropzone').classList.add('drag')});$('dropzone').addEventListener('dragleave',()=> $('dropzone').classList.remove('drag'));
+  $('dropzone').addEventListener('drop',e=>{e.preventDefault();$('dropzone').classList.remove('drag');addFiles(e.dataTransfer.files)});
+  document.addEventListener('dragover',e=>{if(e.dataTransfer?.types?.includes('Files'))e.preventDefault()});document.addEventListener('drop',e=>{if(e.target.closest('#dropzone'))return;if(e.dataTransfer?.files?.length){e.preventDefault();addFiles(e.dataTransfer.files)}});
+  document.addEventListener('paste',e=>{const files=[];for(const it of (e.clipboardData?.items||[])){if(it.type.startsWith('image/')){const f=it.getAsFile();if(f)files.push(f)}}if(files.length)addFiles(files)});
+  $('pasteHelp').onclick=()=>toast('Copy an image, then press Ctrl/⌘ + V while this page is open.');
+  $('enableCollage').addEventListener('change',()=>{$('collageSettings').classList.toggle('show',$('enableCollage').checked);render()});
+  $('defaultFit').addEventListener('change',()=>{state.images.forEach(i=>i.fit=$('defaultFit').value);render()});
+  $('selectAll').onclick=()=>{state.images.forEach(i=>i.selected=true);render()};$('deselectAll').onclick=()=>{state.images.forEach(i=>i.selected=false);render()};
+  $('selectCollage').onclick=()=>{state.images.forEach(i=>i.collageSelected=true);render()};$('deselectCollage').onclick=()=>{state.images.forEach(i=>i.collageSelected=false);render()};
+  $('rotateAll').onclick=()=>{selected().forEach(i=>i.rotation=(i.rotation+90)%360);render()};
+  $('clearAll').onclick=()=>{state.images.forEach(i=>URL.revokeObjectURL(i.url));state.images=[];render();toast('All images cleared')};
+  function dimensions(){const [w,h]=paperInches[$('paperSize').value];return [Math.round(w*240),Math.round(h*240)]}
+  function loadImage(src){return new Promise((resolve,reject)=>{const im=new Image();im.onload=()=>resolve(im);im.onerror=reject;im.src=src})}
+  async function drawItem(ctx,item,x,y,w,h,fit){
+    const im=await loadImage(item.url);ctx.save();ctx.translate(x+w/2,y+h/2);ctx.rotate(item.rotation*Math.PI/180);
+    let dw=w,dh=h;const iw=im.naturalWidth,ih=im.naturalHeight;const boxW=(item.rotation%180===0)?w:h,boxH=(item.rotation%180===0)?h:w;
+    const scale=fit==='cover'?Math.max(boxW/iw,boxH/ih):Math.min(boxW/iw,boxH/ih);dw=iw*scale;dh=ih*scale;
+    if(fit==='cover'){ctx.beginPath();ctx.rect(-boxW/2,-boxH/2,boxW,boxH);ctx.clip()}
+    ctx.drawImage(im,-dw/2,-dh/2,dw,dh);ctx.restore()
+  }
+  function gridFor(n,w,h){let cols=1,rows=n,best=Infinity;for(let c=1;c<=n;c++){if(n%c)continue;const r=n/c;const score=Math.abs(Math.log((w/c)/(h/r)));if(score<best){best=score;cols=c;rows=r}}return{cols,rows}}
+  async function makePages(){
+    const chosen=selected();if(!chosen.length)throw Error('Select at least one image.');
+    const useCollage=$('enableCollage').checked;const cItems=useCollage?chosen.filter(i=>i.collageSelected):[];const separate=chosen.filter(i=>!useCollage||!i.collageSelected);const pages=[];
+    if(cItems.length){
+      const mode=$('collageCount').value;const per=mode==='auto'?Math.min(4,cItems.length):Number(mode);const [W,H]=dimensions();
+      for(let off=0;off<cItems.length;off+=per){const batch=cItems.slice(off,off+per);const {cols,rows}=gridFor(batch.length,W,H);const canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;const ctx=canvas.getContext('2d');ctx.fillStyle='white';ctx.fillRect(0,0,W,H);const pad=Math.round(Math.min(W,H)*.025),gap=Math.round(Math.min(W,H)*.018);const cw=(W-pad*2-gap*(cols-1))/cols,ch=(H-pad*2-gap*(rows-1))/rows;
+        for(let i=0;i<batch.length;i++){const col=i%cols,row=Math.floor(i/cols);const x=pad+col*(cw+gap),y=pad+row*(ch+gap);await drawItem(ctx,batch[i],x,y,cw,ch,batch[i].fit||$('collageFit').value)}
+        pages.push({url:canvas.toDataURL('image/jpeg',.96),label:`Collage page ${pages.length+1}`});
+      }
+    }
+    const [W,H]=dimensions();
+    for(const item of separate){const canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;const ctx=canvas.getContext('2d');ctx.fillStyle='white';ctx.fillRect(0,0,W,H);await drawItem(ctx,item,0,0,W,H,item.fit||$('defaultFit').value);pages.push({url:canvas.toDataURL('image/jpeg',.96),label:item.name})}
+    return pages;
+  }
+  async function preview(){try{
+    const controls=$('previewControls');controls.innerHTML='';
+    selected().forEach(item=>{const row=document.createElement('label');row.className='preview-fit-control';const name=document.createElement('span');name.textContent=item.name;name.title=item.name;const sel=document.createElement('select');sel.setAttribute('aria-label','Image fit for '+item.name);sel.innerHTML='<option value="contain">Shrink to fit</option><option value="cover">Fill grid</option>';sel.value=item.fit;sel.addEventListener('change',async()=>{item.fit=sel.value;await refreshPreviewPages()});row.append(name,sel);controls.appendChild(row)});
+    await refreshPreviewPages();$('previewModal').classList.add('show')
+  }catch(e){toast(e.message||'Could not prepare preview')}}
+  async function refreshPreviewPages(){const pages=await makePages();const grid=$('previewGrid');grid.innerHTML='';pages.forEach((p,i)=>{const card=document.createElement('div');card.className='preview-page';const img=document.createElement('img');img.src=p.url;img.alt=p.label;const cap=document.createElement('p');cap.textContent=`Page ${i+1} · ${p.label}`;card.append(img,cap);grid.appendChild(card)})}
+  $('previewBtn').onclick=preview;$('closePreview').onclick=()=>$('previewModal').classList.remove('show');
+  $('previewModal').addEventListener('click',e=>{if(e.target===$('previewModal'))$('previewModal').classList.remove('show')});
+  document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>$(b.dataset.close).classList.remove('show'));
+  $('simulateGrabber').onclick=()=>$('grabberModal').classList.add('show');
+  $('downloadExtension').onclick=()=>{const a=document.createElement('a');a.href='drop2print-chrome-extension.zip';a.download='drop2print-chrome-extension.zip';document.body.appendChild(a);a.click();a.remove();toast('Extension ZIP download started');};
+  $('bannerInstall').onclick=()=>$('install').scrollIntoView({behavior:'smooth'});
+  $('printBtn').onclick=async()=>{try{const pages=await makePages();const w=window.open('','_blank');if(!w){toast('Allow pop-ups to open the print dialog.');return}const title='Drop2Print Print';const paper=$('paperSize').value;const css=`@page{size:${paper};margin:0}html,body{margin:0;padding:0}section{width:100%;height:100vh;page-break-after:always;break-after:page;display:flex;align-items:center;justify-content:center;overflow:hidden}section:last-child{page-break-after:auto;break-after:auto}img{width:100%;height:100%;object-fit:fill;display:block}`;w.document.write('<!doctype html><html><head><title>'+title+'</title><style>'+css+'</style></head><body><div id="root"></div></body></html>');const root=w.document.getElementById('root');pages.forEach(p=>{const s=w.document.createElement('section');const im=w.document.createElement('img');im.src=p.url;s.appendChild(im);root.appendChild(s)});w.document.close();w.onload=()=>setTimeout(()=>{w.focus();w.print()},500);toast('Print preview prepared')}catch(e){toast(e.message||'Printing failed')}};
+  $('downloadBtn').onclick=async()=>{try{const pages=await makePages();pages.forEach((p,i)=>{const a=document.createElement('a');a.href=p.url;a.download=`drop2print-page-${i+1}.jpg`;document.body.appendChild(a);a.click();a.remove()});toast(`Downloading ${pages.length} preview image(s)`)}catch(e){toast(e.message||'Could not generate pages')}};
+  $('headerTry').onclick=$('heroTry').onclick=$('jumpStudio').onclick=()=> $('studio').scrollIntoView({behavior:'smooth'});
+  $('headerInstall').onclick=$('heroInstall').onclick=()=> $('install').scrollIntoView({behavior:'smooth'});
+  $('copyExtensions').onclick=async()=>{try{await navigator.clipboard.writeText('chrome://extensions');toast('Copied chrome://extensions')}catch(e){toast('Open a new tab and type chrome://extensions')}};
+  document.querySelectorAll('[data-mode]').forEach(btn=>btn.onclick=()=>{state.mode=btn.dataset.mode;document.body.classList.toggle('side-mode',state.mode==='side');document.body.classList.toggle('popup-mode',state.mode==='popup');document.querySelectorAll('[data-mode]').forEach(b=>b.classList.toggle('active',b===btn));window.scrollTo({top:0,behavior:'smooth'})});
+  document.querySelectorAll('.faq-q').forEach(btn=>btn.addEventListener('click',()=>btn.parentElement.classList.toggle('open')));
+  render();
+})();
+</script>
+</body>
+</html>
